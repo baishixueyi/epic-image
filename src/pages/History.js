@@ -3,7 +3,7 @@ import React from 'react';
 function History(){
     return (
         <>
-            <h1>History page</h1>
+            <h1>History</h1>
         </>
     )
 }

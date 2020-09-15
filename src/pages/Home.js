@@ -3,7 +3,7 @@ import React from 'react';
 function Home(){
     return (
         <>
-            <h1>home page</h1>
+            <h1 style={{color:'red'}}>home page</h1>
         </>
     )
 }

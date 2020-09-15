@@ -22,18 +22,19 @@ const About = lazy(() => import('./pages/About'))
 
 function App() {
   return (
-    <div className="app">
+    <>
       <Header />
-      <Suspense fallback={<Loading/>}>
-        <Switch>
-          <Route path="/" exact><Home /></Route>
-          <Route path="/history" ><History /></Route>
-          <Route path="/about" ><About /></Route>
-        </Switch>
-      </Suspense>
-
+      <main>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route path="/" exact><Home /></Route>
+            <Route path="/history" ><History /></Route>
+            <Route path="/about" ><About /></Route>
+          </Switch>
+        </Suspense>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
