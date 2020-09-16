@@ -1,6 +1,6 @@
 import React from 'react';
  import Logo from './logo.svg'
-import {NavLink} from 'react-router-dom'
+import {Link,NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 
 const Header = styled.header`
@@ -28,6 +28,8 @@ function Component(){
                 <StyleLink to="/history" activeClassName="active">上传历史</StyleLink>
                 <StyleLink to="/about" activeClassName="active">关于我</StyleLink>
             </nav>
+            <button><Link to="/login">登录</Link></button>
+            <button><Link to="/register">注册</Link></button>
         </Header>
     )
 }
