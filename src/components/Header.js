@@ -1,7 +1,8 @@
 import React from 'react';
- import Logo from './logo.svg'
-import {Link,NavLink} from 'react-router-dom'
+import Logo from './logo.svg'
+import { NavLink,useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import { Button } from 'antd'
 
 const Header = styled.header`
 display:flex;
@@ -19,7 +20,20 @@ const StyleLink = styled(NavLink)`
         border-bottom:1px solid #fff;
     }
 `
-function Component(){
+const Login = styled.div`
+    margin-left:auto;
+`
+const StyleButton = styled(Button)`
+    margin-left:10px;
+`
+function Component() {
+    const history = useHistory()
+    const handleLogin = ()=>{
+        history.push('/login')
+    }
+    const handleRegister = ()=>{
+        history.push('/register')
+    }
     return (
         <Header>
             <Logostyle src={Logo} />
@@ -28,8 +42,11 @@ function Component(){
                 <StyleLink to="/history" activeClassName="active">上传历史</StyleLink>
                 <StyleLink to="/about" activeClassName="active">关于我</StyleLink>
             </nav>
-            <button><Link to="/login">登录</Link></button>
-            <button><Link to="/register">注册</Link></button>
+            <Login>
+                <StyleButton type="primary" onClick={handleLogin}>登录</StyleButton>
+                <StyleButton type="primary" onClick={handleRegister}>注册</StyleButton>
+            </Login>
+
         </Header>
     )
 }

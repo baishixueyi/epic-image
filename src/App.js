@@ -10,6 +10,7 @@ import {
   Route
 } from 'react-router-dom'
 
+import 'antd/dist/antd.css';
 // import Home from './pages/Home'
 // import History from './pages/History'
 // import About from './pages/About'
