@@ -71,7 +71,7 @@ const Component = observer(() => {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        登录
                 </Button>
                 </Form.Item>
             </Form>
