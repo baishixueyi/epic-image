@@ -18,6 +18,7 @@ const Title = styled.h1`
 `
 const Component = observer(() => {
     const { AuthStore } = useStore()
+    const history = useHistory()
     const layout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 16 },
@@ -31,7 +32,7 @@ const Component = observer(() => {
         AuthStore.setPassword(values.password)
         AuthStore.Login().then(()=>{
             console.log('登录成功，跳转到首页')
-            useHistory.push('/')
+            history.push('/')
         }).catch(()=>console.log('登录失败'))
     };
 

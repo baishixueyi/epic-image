@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Form, Input, Button} from 'antd';
 import { useStore } from '../stores'
-
+import { useHistory } from 'react-router-dom'
 
 const LoginBox = styled.div`
     width:400px;
@@ -18,6 +18,7 @@ const Title = styled.h1`
 `
 const Component = observer(() => {
     const { AuthStore } = useStore()
+    const history = useHistory()
     const layout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 16 },
@@ -30,7 +31,9 @@ const Component = observer(() => {
         AuthStore.setUsername(values.username)
         AuthStore.setPassword(values.password)
         AuthStore.register().then(res=>{
-            console.log('注册成功')
+            console.log('注册成功,跳转到登录页')
+            history.push('/login')
+
         }).catch(error=>console.log('注册失败'))
     };
 
