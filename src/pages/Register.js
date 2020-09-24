@@ -2,6 +2,7 @@ import { observer } from 'mobx-react'
 import React from 'react'
 import styled from 'styled-components'
 import { Form, Input, Button} from 'antd';
+import { useStore } from '../stores'
 
 
 const LoginBox = styled.div`
@@ -16,7 +17,7 @@ const Title = styled.h1`
     margin-bottom: 30px;
 `
 const Component = observer(() => {
-
+    const { AuthStore } = useStore()
     const layout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 16 },
@@ -26,6 +27,11 @@ const Component = observer(() => {
     };
     const onFinish = values => {
         console.log('Success:', values);
+        AuthStore.setUsername(values.username)
+        AuthStore.setPassword(values.password)
+        AuthStore.register().then(res=>{
+            console.log('注册成功')
+        }).catch(error=>console.log('注册失败'))
     };
 
     const onFinishFailed = errorInfo => {

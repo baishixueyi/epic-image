@@ -3,6 +3,8 @@ import Logo from './logo.svg'
 import { NavLink,useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button } from 'antd'
+import { observer} from 'mobx-react'
+import { useStore } from '../stores'
 
 const Header = styled.header`
 display:flex;
@@ -22,17 +24,23 @@ const StyleLink = styled(NavLink)`
 `
 const Login = styled.div`
     margin-left:auto;
+    color:#fff;
 `
 const StyleButton = styled(Button)`
     margin-left:10px;
 `
-function Component() {
+const Component = observer(()=> {
+    const { AuthStore,userStore }  = useStore()
     const history = useHistory()
     const handleLogin = ()=>{
         history.push('/login')
     }
     const handleRegister = ()=>{
         history.push('/register')
+    }
+    const handleLogout = ()=>{
+        console.log('注销')
+        AuthStore.Logout()
     }
     return (
         <Header>
@@ -43,12 +51,15 @@ function Component() {
                 <StyleLink to="/about" activeClassName="active">关于我</StyleLink>
             </nav>
             <Login>
-                <StyleButton type="primary" onClick={handleLogin}>登录</StyleButton>
-                <StyleButton type="primary" onClick={handleRegister}>注册</StyleButton>
+                {
+                    userStore.currentUser?<>{userStore.currentUser.attributes.username}<StyleButton type="primary" onClick={handleLogout}>注销</StyleButton> </>:<><StyleButton type="primary" onClick={handleLogin}>登录</StyleButton>
+                    <StyleButton type="primary" onClick={handleRegister}>注册</StyleButton></>
+                }
+                
             </Login>
 
         </Header>
     )
-}
+})
 
 export default Component;

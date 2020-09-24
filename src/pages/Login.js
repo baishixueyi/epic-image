@@ -2,6 +2,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Form, Input, Button} from 'antd';
 import styled from 'styled-components'
+import { useStore } from '../stores'
+import { useHistory } from 'react-router-dom'
 
 const LoginBox = styled.div`
     width:400px;
@@ -15,7 +17,7 @@ const Title = styled.h1`
     margin-bottom: 30px;
 `
 const Component = observer(() => {
-
+    const { AuthStore } = useStore()
     const layout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 16 },
@@ -25,6 +27,12 @@ const Component = observer(() => {
     };
     const onFinish = values => {
         console.log('Success:', values);
+        AuthStore.setUsername(values.username)
+        AuthStore.setPassword(values.password)
+        AuthStore.Login().then(()=>{
+            console.log('登录成功，跳转到首页')
+            useHistory.push('/')
+        }).catch(()=>console.log('登录失败'))
     };
 
     const onFinishFailed = errorInfo => {
