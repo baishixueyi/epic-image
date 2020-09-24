@@ -21,8 +21,12 @@ class AuthStore{
         this.isLoading = true
         return new Promise((resolve,reject)=>{
             serverLogin.login(this.values.username,this.values.password)
-            .then(res=>userStore.pullUser())
-            .catch(error=>console.log(error))
+            .then(res=>{
+              userStore.pullUser() 
+              resolve(res) 
+            }).catch(error=>{
+                reject(error)
+            })
         })
     }
     
@@ -30,7 +34,7 @@ class AuthStore{
         console.log('注册中。。。')
         this.isLoading = true
         return new Promise((resolve,reject)=>{
-            serverLogin.register(this.values.username,this.values.password).then(res=>console.log('注册成功'+res)).catch(error=>console.log('注册失败'+error))
+            serverLogin.register(this.values.username,this.values.password).then(res=>resolve(res)).catch(error=>reject(error))
         })
         
     }
