@@ -1,11 +1,16 @@
 import React from 'react';
+import { observer } from 'mobx-react'
+import { useStore } from '../stores'
 
-function Home(){
+const Home = observer(()=>{
+    const { userStore }  = useStore()
     return (
         <>
-            <h1 style={{color:'red'}}>home</h1>
+        {
+            userStore.currentUser?<>Hello {userStore.currentUser.attributes.username}</>:<>用戶未登录</>
+        }
         </>
     )
-}
+})
 
 export default Home;
