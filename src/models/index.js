@@ -6,7 +6,7 @@ AV.init({
     serverURL: "https://uqbaasqm.lc-cn-n1-shared.com"
   });
 
-class servelApi{
+const servelApi = {
     register(username,password){
         console.log(username+'---'+password)
         let user = new User()
@@ -15,19 +15,32 @@ class servelApi{
         return new Promise((resolve,reject)=>{
             user.signUp().then(loginUser=>resolve(loginUser),error=>reject(error))
         })
-    }
+    },
     login(username,password){
         return new Promise((resolve,reject)=>{
             User.logIn(username,password).then(loginUser=>resolve(loginUser),error=>reject(error))
         })
-    }
+    },
     logout(){
         User.logOut()
-    }
+    },
     getCurrentUser(){
         console.log(User.current())
         return User.current()
     }
 }
 
-export default new servelApi()
+const Uploader = {
+    add(file,filename){
+        const item = new AV.Object('Image')
+        const avFile = new AV.File(filename,file)
+        item.set('filename',filename)
+        item.set('owner',User.current())
+        item.set('url',avFile)
+        return new Promise((resolve,reject)=>{
+            item.save().then(fileInfo=>resolve(fileInfo),error=>reject(error))
+        })
+    }
+}
+
+export {servelApi,Uploader}

@@ -1,11 +1,11 @@
 import { observable,action } from 'mobx'
-import serverLogin from '../models'
+import {servelApi} from '../models'
 
 class UserStore {
     @observable currentUser = null;
 
     @action pullUser(){
-        this.currentUser = serverLogin.getCurrentUser()
+        this.currentUser = servelApi.getCurrentUser()
     }
 
     @action resetUser(){

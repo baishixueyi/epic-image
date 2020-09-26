@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import serverLogin from '../models'
+import {servelApi} from '../models'
 import userStore from './user'
 
 class AuthStore{
@@ -20,7 +20,7 @@ class AuthStore{
         console.log('登录中。。。')
         this.isLoading = true
         return new Promise((resolve,reject)=>{
-            serverLogin.login(this.values.username,this.values.password)
+            servelApi.login(this.values.username,this.values.password)
             .then(res=>{
               userStore.pullUser() 
               resolve(res) 
@@ -34,7 +34,7 @@ class AuthStore{
         console.log('注册中。。。')
         this.isLoading = true
         return new Promise((resolve,reject)=>{
-            serverLogin.register(this.values.username,this.values.password).then(res=>resolve(res)).catch(error=>reject(error))
+            servelApi.register(this.values.username,this.values.password).then(res=>resolve(res)).catch(error=>reject(error))
         })
         
     }
@@ -42,7 +42,7 @@ class AuthStore{
     @action Logout(){
         this.isLogin = false
         console.log('已注销')
-        serverLogin.logout()
+        servelApi.logout()
         userStore.resetUser()
     }
 }

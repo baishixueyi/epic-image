@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Logo from './logo.svg'
 import { NavLink,useHistory } from 'react-router-dom'
 import styled from 'styled-components'
@@ -42,6 +42,9 @@ const Component = observer(()=> {
         console.log('注销')
         AuthStore.Logout()
     }
+    useEffect(()=>{
+        userStore.pullUser()
+    },[])
     return (
         <Header>
             <Logostyle src={Logo} />
