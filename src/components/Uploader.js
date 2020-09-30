@@ -57,8 +57,9 @@ const Components=observer(()=>{
                 message.warning('请先登录后上传')
                 return false
             }
+            console.log(file)
             //限制上传图片格式和大小
-            if(!/(png$) | (gif$) | (svg$) | (jpg$) | (jpeg$)/.test(file.type)){
+            if(!/(png$)|(gif$)|(svg$)|(jpg$)|(jpeg$)/ig.test(file.type)){
                 message.error('只能上传png/gif/svg/jpg/jpeg格式的图片')
                 return false
             }
