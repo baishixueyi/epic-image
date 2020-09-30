@@ -38,7 +38,16 @@ const Uploader = {
         item.set('owner',User.current())
         item.set('url',avFile)
         return new Promise((resolve,reject)=>{
-            item.save().then(fileInfo=>resolve(fileInfo),error=>reject(error))
+            item.save().then(fileInfo=>resolve(fileInfo)).catch(error=>reject(error))
+        })
+    },
+    select(page,pagesize){
+        const query = new AV.Query('Image')
+        query.equalTo('owner', User.current());
+        query.limit(pagesize);
+        query.skip((page-1)*pagesize);
+        return new Promise((resolve,reject)=>{
+            query.find().then(listData=>resolve(listData)).catch(error=>reject(error))
         })
     }
 }
