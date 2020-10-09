@@ -17,9 +17,13 @@ height:30px;
 `
 const StyleLink = styled(NavLink)`
     margin-left:30px;
-    color:#fff;
+    color:#595959;
     &.active{
+        color:#fff;
         border-bottom:1px solid #fff;
+    }
+    &:hover{
+        color:#fff;
     }
 `
 const Login = styled.div`

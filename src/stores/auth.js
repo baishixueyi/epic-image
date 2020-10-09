@@ -1,6 +1,8 @@
 import { observable, action } from 'mobx';
 import {servelApi} from '../models'
 import userStore from './user'
+import imageStore from './image'
+import historyStore from './history'
 
 class AuthStore{
     @observable isLoading = false;
@@ -44,6 +46,8 @@ class AuthStore{
         console.log('已注销')
         servelApi.logout()
         userStore.resetUser()
+        imageStore.reset()//首页退出清空上传图片信息
+        historyStore.reset() //历史记录进行清空
     }
 }
 

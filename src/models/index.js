@@ -44,6 +44,7 @@ const Uploader = {
     select(page,pagesize){
         const query = new AV.Query('Image')
         query.equalTo('owner', User.current());
+        query.descending('createdAt');
         query.limit(pagesize);
         query.skip((page-1)*pagesize);
         return new Promise((resolve,reject)=>{

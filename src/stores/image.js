@@ -27,6 +27,11 @@ class ImageStore {
             })
         })
     }
+    @action reset(){
+        this.filename=""
+        this.file = null
+        this.serverFile = null
+    }
 }
 
 export default new ImageStore()

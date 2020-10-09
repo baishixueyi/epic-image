@@ -7,7 +7,7 @@ class HistoryStory {
     @observable isLoading = false
     @observable hasMore = true
     @observable page = 1;
-    pagesize = 1
+    pagesize = 12
 
     @action append(newList){
         this.list = this.list.concat(newList)
@@ -31,7 +31,6 @@ class HistoryStory {
     @action reset(){
         this.list = []
         this.isLoading = false
-        this.hasMore = true
         this.page = 1
     }
 }
