@@ -4,8 +4,8 @@
 - 功能包含：
 1. 用户的注册和登录
 2. 上传图片后生成图片地址
-- 设计到的技术栈：
-1. react react-router 
+- 涉及到的技术栈：
+1. react react-router mobx mobx-react babel 
 
 ## Available Scripts
 
