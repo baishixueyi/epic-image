@@ -24,6 +24,8 @@ const Components=observer(()=>{
     const { imageStore,userStore } = useStore()
     const ref1 = useRef()
     const ref2 = useRef()
+    const ref3 = useRef()
+    const ref4 = useRef()
     const store = useLocalStore(()=>({
         width:null,
         setWidth(width){
@@ -48,6 +50,12 @@ const Components=observer(()=>{
     }
     const handleHeight = ()=>{
         store.setHeight(ref2.current.value)
+    }
+    const handleSelect = ()=>{
+        ref3.current.select()
+    }
+    const handleSelect2 = ()=>{
+        ref4.current.select()
     }
     const props = {
         multiple: true,
@@ -94,7 +102,7 @@ const Components=observer(()=>{
                     <H1>上传结果</H1>
                     <dl>
                         <dt>线上地址</dt>
-                        <dd><a target="_blank" href={imageStore.serverFile.attributes.url.attributes.url}>{imageStore.serverFile.attributes.url.attributes.url}</a></dd>
+                        <dd><input style={{width:'420px',marginRight:'10px'}} ref={ref3} value={imageStore.serverFile.attributes.url.attributes.url} onFocus={handleSelect}/><a target="_blank" href={imageStore.serverFile.attributes.url.attributes.url}>查看原图</a></dd>
                         <dt>文件名</dt>
                         <dd>{imageStore.filename}</dd>
                         <dt>图片预览</dt>
@@ -104,7 +112,7 @@ const Components=observer(()=>{
                             <input ref={ref1} onChange={handleWidth} placeholder="最大宽度（可选）"/>
                             <input ref={ref2} onChange={handleHeight} placeholder="最大高度（可选）"/>
                         </dd>
-                        <dd><a target="_blank" href={store.fullStr}>{store.fullStr}</a></dd>
+                        <dd><input style={{width:'550px',marginRight:'10px'}} ref={ref4} value={store.fullStr} onFocus={handleSelect2}/><a target="_blank" href={store.fullStr}>查看图片</a></dd>
                     </dl>
                 </Result> : null}
         </div>
