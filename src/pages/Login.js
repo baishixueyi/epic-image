@@ -16,6 +16,15 @@ const Title = styled.h1`
     text-align:center;
     margin-bottom: 30px;
 `
+const StyleButton = styled(Button)`
+    margin-left:10px;
+    background:#006d75;
+    border:#006d75;
+    &:hover,&:focus{
+        background:#006d75;
+        border:#006d75;
+    }
+`
 const Component = observer(() => {
     const { AuthStore } = useStore()
     const history = useHistory()
@@ -79,9 +88,9 @@ const Component = observer(() => {
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <StyleButton type="primary" htmlType="submit">
                         登录
-                </Button>
+                </StyleButton>
                 </Form.Item>
             </Form>
         </LoginBox>

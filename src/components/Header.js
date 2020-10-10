@@ -34,6 +34,10 @@ const StyleButton = styled(Button)`
     margin-left:10px;
     background:#006d75;
     border:#006d75;
+    &:hover,&:focus{
+        background:#006d75;
+        border:#006d75;
+    }
 `
 const Component = observer(()=> {
     const { AuthStore,userStore }  = useStore()
