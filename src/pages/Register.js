@@ -50,9 +50,13 @@ const Component = observer(() => {
         console.log('Failed:', errorInfo);
     };
     const validateUsername = (rule,value)=>{
-        if(/\W/.test(value)) return Promise.reject('只能是字母数字下划线');
-        if(value.length<4 || value.length>10) return Promise.reject('长度为4~10个字符');
-        return Promise.resolve();
+        if(value===undefined){
+            return Promise.resolve();
+        }else{
+            if(/\W/.test(value)) return Promise.reject('只能是字母数字下划线');
+            if(value.length<4 || value.length>10) return Promise.reject('长度为4~10个字符');
+            return Promise.resolve();
+        }
     }
     const validateConfirm = ({getFieldValue})=>({
         validator(rule,value){
